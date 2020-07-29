@@ -83,7 +83,7 @@ blockParser :: Parser Program
 blockParser = Block <$> (whiteParser *> charParser '{' *> many programParser <* whiteParser <* charParser '}' <* whiteParser)
 
 programParser :: Parser Program
-programParser = getParser <|> defineParser <|> blockParser
+programParser = blockParser <|> getParser <|> defineParser 
 
 printType :: Id -> Maybe TypeName -> Maybe (IO ())
 printType _ Nothing = Nothing
