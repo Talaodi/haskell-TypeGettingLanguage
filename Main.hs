@@ -120,6 +120,9 @@ runCode s =
 
 main :: IO ()
 main = do
-  [fileName] <- SE.getArgs
-  code <- readFile fileName
-  runCode code
+  files <- SE.getArgs
+  if null files then
+    putStrLn "No files!"
+  else do
+    code <- readFile $ head files
+    runCode code
